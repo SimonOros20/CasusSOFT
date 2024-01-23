@@ -3,109 +3,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace CasusSOFT
+namespace CLI_Casus_Blok_5
 {
-    // Basisklasse voor nodes
     public class Node
     {
-        public Guid NodeID { get; set; }
+        public ulong DeploymentIdentity { get; set; }
         public List<Peripheral> Peripherals { get; set; }
+        public bool IsActive { get; set; }
 
-        // Constructor om een unieke NodeID toe te wijzen en de lijst van peripherals te initialiseren
-        public Node()
+        public Node(ulong deploymentIdentity) 
         {
-            NodeID = Guid.NewGuid();
+            DeploymentIdentity = deploymentIdentity;
             Peripherals = new List<Peripheral>();
+            IsActive = false;
         }
 
-        // Methode om een peripheral toe te voegen aan de lijst
-        public void AddPeripheral(Peripheral peripheral)
+        private void AddPeripheral(PeripheralType type, PeripheralModel model, int index)
         {
-            Peripherals.Add(peripheral);
-        }
-    }
-
-    // Klasse die de eigenschappen van een peripheral definieert
-    public class Peripheral
-    {
-        public int Number { get; set; }
-        public string Type { get; set; }
-        public string Model { get; set; }
-    }
-}
-
-// Namespace voor specifieke nodefunctionaliteiten
-namespace Nodemanagement
-{
-    // Klasse die specifieke eigenschappen van een node binnen deze namespace definieert
-    public class Node
-    {
-        private int nodeId;
-
-        public int NodeId
-        {
-            get { return nodeId; }
-            set { nodeId = value; }
-        }
-    }
-
-    // Klasse voor het beheren van nodes
-    public class NodeManagement
-    {
-        private List<Node> nodes;
-
-        // Constructor om een nieuwe lijst van nodes te initialiseren
-        public NodeManagement()
-        {
-            nodes = new List<Node>();
-        }
-
-        // Methode om een node toe te voegen aan de lijst en een bericht af te drukken
-        public void AddNode(Node nieuweNode)
-        {
-            nodes.Add(nieuweNode);
-            Console.WriteLine($"Node: {nieuweNode} toegevoegd.");
-        }
-
-        // Methode om een node te verwijderen uit de lijst en een bericht af te drukken
-        public void RemoveNode(Node verwijderNode)
-        {
-            if (nodes.Contains(verwijderNode))
+            // Check of er niet meer dan 8 peripherals op de node staan.
+            if (Peripherals.Count >= 8)  
             {
-                nodes.Remove(verwijderNode);
-                Console.WriteLine($"Node: {verwijderNode} verwijderd.");
+                Console.WriteLine("Maximaal aantal peripherals bereikt voor deze node.");
+                return;
             }
-            else
+
+            // Check of de index niet al in gebruik is.
+            if (Peripherals.Any(p => p.Index == index))
             {
-                Console.WriteLine("Node niet toegevoegd.");
+                Console.WriteLine($"Peripheral met index {index} bestaat al voor deze node.");
+                return;
             }
+
+            // Voeg de nieuwe peripheral toe aan de lijst
+            Peripherals.Add(new Peripheral(type, model, index));
+            Console.WriteLine($"Peripheral {type} - {model} toegevoegd aan node {DeploymentIdentity} op index {index}.");
         }
 
-        // Methode om een node te activeren en een bericht af te drukken
-        public void ActivateNode(Node activeerNode)
+        public enum PeripheralType 
         {
-            if (nodes.Contains(activeerNode))
-            {
-                Console.WriteLine($"Node:{activeerNode} geactiveerd.");
-            }
-            else
-            {
-                Console.WriteLine("Node niet gevonden.");
-            }
+            Sensor,
+            Control,
+            Actuator
         }
 
-        // Methode om een node te deactiveren en een bericht af te drukken
-        public void DeactivateNode(Node deactiveerNode)
+        public enum PeripheralModel
         {
-            if (nodes.Contains(deactiveerNode))
-            {
-                Console.WriteLine($"Node: {deactiveerNode} gedeactiveerd.");
-            }
-            else
-            {
-                Console.WriteLine("Node niet gevonden.");
-            }
+            Color,
+            Movement,
+            Water,
+            Temperature,
+            PressureAir,
+            PressureWater,
+            Switch,
+            SLider
         }
     }
 }
