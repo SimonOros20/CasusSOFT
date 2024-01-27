@@ -27,10 +27,28 @@ namespace CasusSOFT
 
         public void ActivateNode(Node node)
         {
+            if (nodes.Contains(node))
+            {
+                // Voeg hier code toe om een node te activeren, bijvoorbeeld: node.Activate();
+                Console.WriteLine($"Node {node} geactiveerd.");
+            }
+            else
+            {
+                Console.WriteLine($"Node {node} niet gevonden in de lijst.");
+            }
         }
 
         public void DeactivateNode(Node node)
         {
+            if (nodes.Contains(node))
+            {
+                // Voeg hier code toe om een node te deactiveren, bijvoorbeeld: node.Deactivate();
+                Console.WriteLine($"Node {node} gedeactiveerd.");
+            }
+            else
+            {
+                Console.WriteLine($"Node {node} niet gevonden in de lijst.");
+            }
         }
 
         public List<Node> GetNodeList()

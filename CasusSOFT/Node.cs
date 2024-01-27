@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CasusSOFT
 {
@@ -33,78 +30,71 @@ namespace CasusSOFT
         public string Type { get; set; }
         public string Model { get; set; }
     }
-}
 
-// Namespace voor specifieke nodefunctionaliteiten
-namespace Nodemanagement
-{
     // Klasse die specifieke eigenschappen van een node binnen deze namespace definieert
-    public class Node
+    namespace Nodemanagement
     {
-        private int nodeId;
-
-        public int NodeId
+        public class ManagedNode : Node
         {
-            get { return nodeId; }
-            set { nodeId = value; }
-        }
-    }
-
-    // Klasse voor het beheren van nodes
-    public class NodeManagement
-    {
-        private List<Node> nodes;
-
-        // Constructor om een nieuwe lijst van nodes te initialiseren
-        public NodeManagement()
-        {
-            nodes = new List<Node>();
+            public int NodeId { get; set; }
         }
 
-        // Methode om een node toe te voegen aan de lijst en een bericht af te drukken
-        public void AddNode(Node nieuweNode)
+        // Klasse voor het beheren van nodes
+        public class NodeManagement
         {
-            nodes.Add(nieuweNode);
-            Console.WriteLine($"Node: {nieuweNode} toegevoegd.");
-        }
+            private List<ManagedNode> nodes;
 
-        // Methode om een node te verwijderen uit de lijst en een bericht af te drukken
-        public void RemoveNode(Node verwijderNode)
-        {
-            if (nodes.Contains(verwijderNode))
+            // Constructor om een nieuwe lijst van nodes te initialiseren
+            public NodeManagement()
             {
-                nodes.Remove(verwijderNode);
-                Console.WriteLine($"Node: {verwijderNode} verwijderd.");
+                nodes = new List<ManagedNode>();
             }
-            else
-            {
-                Console.WriteLine("Node niet toegevoegd.");
-            }
-        }
 
-        // Methode om een node te activeren en een bericht af te drukken
-        public void ActivateNode(Node activeerNode)
-        {
-            if (nodes.Contains(activeerNode))
+            // Methode om een node toe te voegen aan de lijst en een bericht af te drukken
+            public void AddNode(ManagedNode newNode)
             {
-                Console.WriteLine($"Node:{activeerNode} geactiveerd.");
+                nodes.Add(newNode);
+                Console.WriteLine($"Node: {newNode} toegevoegd.");
             }
-            else
-            {
-                Console.WriteLine("Node niet gevonden.");
-            }
-        }
 
-        // Methode om een node te deactiveren en een bericht af te drukken
-        public void DeactivateNode(Node deactiveerNode)
-        {
-            if (nodes.Contains(deactiveerNode))
+            // Methode om een node te verwijderen uit de lijst en een bericht af te drukken
+            public void RemoveNode(ManagedNode removeNode)
             {
-                Console.WriteLine($"Node: {deactiveerNode} gedeactiveerd.");
+                if (nodes.Contains(removeNode))
+                {
+                    nodes.Remove(removeNode);
+                    Console.WriteLine($"Node: {removeNode} verwijderd.");
+                }
+                else
+                {
+                    Console.WriteLine("Node niet toegevoegd.");
+                }
             }
-            else
+
+            // Methode om een node te activeren en een bericht af te drukken
+            public void ActivateNode(ManagedNode activateNode)
             {
-                Console.WriteLine("Node niet gevonden.");
+                if (nodes.Contains(activateNode))
+                {
+                    Console.WriteLine($"Node:{activateNode} geactiveerd.");
+                }
+                else
+                {
+                    Console.WriteLine("Node niet gevonden.");
+                }
+            }
+
+            // Methode om een node te deactiveren en een bericht af te drukken
+            public void DeactivateNode(ManagedNode deactivateNode)
+            {
+                if (nodes.Contains(deactivateNode))
+                {
+                    Console.WriteLine($"Node: {deactivateNode} gedeactiveerd.");
+                }
+                else
+                {
+                    Console.WriteLine("Node niet gevonden.");
+                }
             }
         }
     }
