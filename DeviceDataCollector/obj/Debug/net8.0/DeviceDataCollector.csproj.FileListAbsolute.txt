@@ -1,0 +1,4 @@
+\\.psf\Home\Documents\Zuyd\nodular-23q4-main\gateway\GatewayConnector\DeviceDataCollector\obj\Debug\net8.0\DeviceDataCollector.GeneratedMSBuildEditorConfig.editorconfig
+\\.psf\Home\Documents\Zuyd\nodular-23q4-main\gateway\GatewayConnector\DeviceDataCollector\obj\Debug\net8.0\DeviceDataCollector.AssemblyInfoInputs.cache
+\\.psf\Home\Documents\Zuyd\nodular-23q4-main\gateway\GatewayConnector\DeviceDataCollector\obj\Debug\net8.0\DeviceDataCollector.AssemblyInfo.cs
+\\.psf\Home\Documents\Zuyd\nodular-23q4-main\gateway\GatewayConnector\DeviceDataCollector\obj\Debug\net8.0\DeviceDataCollector.csproj.CoreCompileInputs.cache

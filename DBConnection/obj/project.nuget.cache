@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "jaNzqEj/sU3xOcKZcoiUiMoyNcrKgcefP+APs63f5CbX3U16yxVcL1LVsLhC9go7UJ5e3An0PbDrWBpn9o97uw==",
+  "success": true,
+  "projectFilePath": "\\\\.psf\\Home\\Documents\\Zuyd\\nodular-23q4-main\\gateway\\GatewayConnector\\DBConnection\\DBConnectie.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lionelsassen\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.118\\stub.system.data.sqlite.core.netstandard.1.0.118.nupkg.sha512",
+    "C:\\Users\\lionelsassen\\.nuget\\packages\\system.data.sqlite.core\\1.0.118\\system.data.sqlite.core.1.0.118.nupkg.sha512"
+  ],
+  "logs": []
+}
