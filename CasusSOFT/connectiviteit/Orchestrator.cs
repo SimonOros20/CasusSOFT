@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
 using System.Net;
 
 namespace CasusSOFT.connectiviteit
@@ -16,14 +11,18 @@ namespace CasusSOFT.connectiviteit
 
         public Orchestrator()
         {
+            // Initialisatie van de verschillende componenten
+            service = new Service();
             nodeManagement = new NodeManagement();
             nodeNetworkSide = new NodeNetworkSide(service, IPAddress.Parse("127.0.0.1"), 8080);
-            service = new Service();
         }
 
         public void Start()
         {
+            // Voeg een node toe aan het nodeManagement
             nodeManagement.AddNode(new Node());
+
+            // Start luisteren naar inkomende verbindingen
             nodeNetworkSide.Start();
 
             // Voer andere starttaken uit
@@ -42,4 +41,3 @@ namespace CasusSOFT.connectiviteit
         }
     }
 }
-

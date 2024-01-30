@@ -24,7 +24,7 @@ namespace CasusSOFT.connectiviteit
             stream = tcpClient.GetStream();
         }
 
-        // Methode om een integer om te zetten naar een byte-array op een bepaalde offset
+        // Methode om een integer om te zetten naar een byte-array
         private void IntToBytes(int toEncode, byte[] bytes, int offset)
         {
             bytes[offset] = (byte)(toEncode >> 24 & 0xff);

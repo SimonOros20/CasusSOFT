@@ -31,21 +31,34 @@ namespace CasusSOFT.connectiviteit
 
     public class NodeNetworkAddress
     {
-    
+        public byte[] Address { get; }
 
         public NodeNetworkAddress(byte[] data, int startIndex)
         {
-         
+            //  we gaan ervan uit dat het netwerkadres een array van 4 bytes is (IPv4-adres)
+            Address = new byte[4];
+            Array.Copy(data, startIndex, Address, 0, 4);
+        }
+
+        public override string ToString()
+        {
+            return $"{Address[0]}.{Address[1]}.{Address[2]}.{Address[3]}";
         }
     }
 
     public class NodeIdentity
     {
-        
+        public string Identity { get; }
 
         public NodeIdentity(byte[] data, int startIndex)
         {
-         
+            byte identityLength = data[startIndex];
+            Identity = System.Text.Encoding.UTF8.GetString(data, startIndex + 1, identityLength);
+        }
+
+        public override string ToString()
+        {
+            return Identity;
         }
     }
 }
